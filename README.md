@@ -29,4 +29,37 @@
 
 ## LMS Project- 02
 
-1. Relation
+1.  User.php...................
+    public function invoices()
+    {
+    return $this->hasMany(Invoice::class);
+    }
+2.  Lead.php...................
+    public function notes()
+    {
+    return $this->hasMany(Note::class);
+    }
+3.  Invoice.php...................
+    public function items()
+    {
+    return $this->hasMany(InvoiceItem::class);
+    }
+4.  Grade.php...................
+    public function homeworks()
+    {
+    return $this->hasMany(HomeWork::class);
+    }
+    public function attendance()
+    {
+    return $this->hasMany(Attendance::class);
+    }
+5.  Exam.php...................
+    public function homeworks()
+    {
+    return $this->hasMany(HomeWork::class);
+    }
+6.  Course.php...................
+    public function grades()
+    {
+    return $this->hasMany(Grade::class);
+    }
