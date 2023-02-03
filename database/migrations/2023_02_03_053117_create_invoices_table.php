@@ -17,9 +17,7 @@ return new class extends Migration
    $table->id();
    $table->dateTime('due_date');
    $table->dateTime('paid_date');
-   $table->unsignedBigInteger('user_id');
-   $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-//    $table->foreignId('course_id')->constrained()->cascadeOnDelete();
+   $table->foreignId('user_id')->constrained()->cascadeOnDelete();
    $table->timestamps();
   });
  }

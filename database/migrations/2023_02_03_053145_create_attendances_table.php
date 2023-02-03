@@ -15,12 +15,8 @@ return new class extends Migration
  {
   Schema::create('attendances', function (Blueprint $table) {
    $table->id();
-   $table->unsignedBigInteger('grade_id');
-   $table->unsignedBigInteger('user_id');
-   $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
-   $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-//    $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
-//    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+   $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+   $table->foreignId('user_id')->constrained()->cascadeOnDelete();
    $table->timestamps();
   });
  }

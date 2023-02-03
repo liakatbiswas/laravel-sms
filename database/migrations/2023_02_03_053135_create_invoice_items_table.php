@@ -18,9 +18,7 @@ return new class extends Migration
    $table->string('name');
    $table->float('price');
    $table->unsignedBigInteger('quantity');
-   $table->unsignedBigInteger('invoice_id');
-   $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-   //    $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
+   $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
    $table->timestamps();
   });
  }

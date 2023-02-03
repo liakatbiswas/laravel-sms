@@ -25,5 +25,8 @@
     >     php artisan make:model Attendance -mc
     >     php artisan make:model HomeWork -mc
     >     php artisan make:model Note -mc
+7.  Database schema for necessary fields
 
 ## LMS Project- 02
+
+1. Relation
