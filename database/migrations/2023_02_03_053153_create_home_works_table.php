@@ -6,26 +6,37 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('home_works', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+ /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+ public function up()
+ {
+  Schema::create('home_works', function (Blueprint $table) {
+   $table->id();
+   $table->string('name');
+   $table->string('description');
+   $table->unsignedBigInteger('grade_id')->default(0);
+   $table->unsignedBigInteger('exam_id')->default(0);
+   $table->unsignedBigInteger('user_id');
+   $table->string('link');
+   $table->timestamps();
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('home_works');
-    }
+   $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
+   $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
+   $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//    $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+  });
+ }
+
+ /**
+  * Reverse the migrations.
+  *
+  * @return void
+  */
+ public function down()
+ {
+  Schema::dropIfExists('home_works');
+ }
 };
