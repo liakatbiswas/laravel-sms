@@ -75,3 +75,20 @@
     > php artisan make:livewire counter
     > Note: By creating a component there will create two directory in laravel.
 4.  Add notification by PHP Flasher: flash()->addSuccess("Number is increased by One!");
+
+
+
+## LMS Project- 04
+1. Make a Factory:
+    > php artisan make:factory LeadFactory --model=Lead
+
+LeadFactory.php
+ public function definition()
+ {
+  return [
+   'name'  => $this->faker->name(),
+   'phone' => $this->faker->phoneNumber(),
+   'email' => $this->faker->email(),
+  ];
+ }
+
