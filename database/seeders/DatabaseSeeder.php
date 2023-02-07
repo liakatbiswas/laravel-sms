@@ -20,29 +20,10 @@ class DatabaseSeeder extends Seeder {
   */
  public function run() {
 
-//     $user = User::create( [
-//    'name'     => 'Super Admin',
-//    'email'    => 'super@bdcodex.com',
-//    'password' => \bcrypt( 12345 ),
-//   ] );
-
-  /** Create a role & a permission */
-//   $role       = Role::create( ['name' => 'Super Admin'] );
-//   $permission = Permission::create( ['name' => 'create-admin'] );
-  /** A permission can be assigned to a role */
-//   $role->givePermissionTo( $permission );
-//   $permission->assignRole( $role );
-  /** Give the permission to the user */
-//   $user->assignRole( $role );
-
-//   Creating a role, an user & give the permission to the user
-//   $communicationRole = Role::create( ['name' => 'Communication'] );
-//   $user              = User::create( [
-//    'name'     => 'Communication Team',
-//    'email'    => 'communication@bdcodex.com',
-//    'password' => \bcrypt( 12345 ),
-//   ] );
-//   $user->assignRole( $communicationRole );
+  $defaultsPermissions = ['create-admin', 'lead-management'];
+  foreach ( $defaultsPermissions as $permission ) {
+   Permission::create( ['name' => $permission] );
+  }
 
   $this->create_user_with_role( 'Super Admin', 'Super Admin', 'super@bdcodex.com' );
   $this->create_user_with_role( 'Communication', 'Communication Team', 'communication@bdcodex.com' );
@@ -69,12 +50,12 @@ class DatabaseSeeder extends Seeder {
 
   /** if the user is a Super Admin then give the permission */
   if ( $type == 'Super Admin' ) {
-   $permission = Permission::create( ['name' => 'create-admin'] );
-   $role->givePermissionTo( $permission );
+   $role->givePermissionTo( Permission::all() );
+  } elseif ( $type == 'Leads' ) {
+   $role->givePermissionTo( 'lead-management' );
   }
 
   $user->assignRole( $role );
-
   return $user;
  }
 }

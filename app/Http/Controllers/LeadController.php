@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeadController extends Controller {
  /**
@@ -11,6 +12,12 @@ class LeadController extends Controller {
   * @return \Illuminate\Http\Response
   */
  public function index() {
+  $user            = Auth::user();
+  $checkPermission = $user->hasPermissionTo( 'lead-management' );
+  if ( !$checkPermission ) {
+   flash()->addWarning( "Leads has no permission to see the Leads" );
+   return \redirect()->route( 'dashboard' );
+  }
   return \view( 'lead.index' );
  }
 
