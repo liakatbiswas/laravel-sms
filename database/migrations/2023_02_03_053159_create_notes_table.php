@@ -4,29 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
  /**
   * Run the migrations.
   *
   * @return void
   */
- public function up()
- {
-  Schema::create('notes', function (Blueprint $table) {
+ public function up() {
+  Schema::create( 'notes', function ( Blueprint $table ) {
    $table->id();
-   $table->text('description');
-   $table->unsignedBigInteger('grade_id');
-   $table->unsignedBigInteger('exam_id');
-   $table->unsignedBigInteger('user_id');
-   $table->unsignedBigInteger('lead_id');
+   $table->text( 'description' );
+   $table->unsignedBigInteger( 'grade_id' )->nullable();
+   $table->unsignedBigInteger( 'exam_id' )->nullable();
+   $table->unsignedBigInteger( 'user_id' )->nullable();
+   $table->unsignedBigInteger( 'lead_id' )->nullable();
    $table->timestamps();
 
-   $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
-   $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
-   $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-   $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
-  });
+   $table->foreign( 'grade_id' )->references( 'id' )->on( 'grades' )->onDelete( 'cascade' );
+   $table->foreign( 'exam_id' )->references( 'id' )->on( 'exams' )->onDelete( 'cascade' );
+   $table->foreign( 'user_id' )->references( 'id' )->on( 'users' )->onDelete( 'cascade' );
+   $table->foreign( 'lead_id' )->references( 'id' )->on( 'leads' )->onDelete( 'cascade' );
+  } );
  }
 
  /**
@@ -34,8 +32,7 @@ return new class extends Migration
   *
   * @return void
   */
- public function down()
- {
-  Schema::dropIfExists('notes');
+ public function down() {
+  Schema::dropIfExists( 'notes' );
  }
 };

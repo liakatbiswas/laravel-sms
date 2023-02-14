@@ -27,19 +27,20 @@
         @include('components/wire-loading-btn')
     </form>
 
-    <h3 class="font-bold text-lg">Notes</h3>
+    <h3 class="font-bold text-lg mb-4">Notes</h3>
 
     @foreach ($notes as $note)
-    <p>{{ $note->description }}</p>
+    <div class="mb-4 border border-gray-100 p-4">{{ $note->description }}</div>
     @endforeach
 
 
-<form action="">
+    <h4 class="font-bold text-center mb-2">Add new note</h4>
+<form wire:submit.prevent="addNote">
     <div class="mb-4">
-       <textarea wire:model="note" class="sms-input" placeholder="Type note"></textarea>
+       <textarea wire:model.lazy="note" class="sms-input" placeholder="Type note"></textarea>
     </div>
 
-    <button class="sms-btn" wire:click="addNewNote">Save</button>
+    <button class="sms-btn" type="submit">Save</button>
 </form>
 
 
