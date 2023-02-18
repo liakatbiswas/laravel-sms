@@ -20,9 +20,9 @@
                     <a href="{{ route('lead.edit',$lead->id) }}"> @include('components.icons.edit')</a>
                     <a class="px-2" href="{{ route('lead.show',$lead->id) }}"> @include('components.icons.eye')</a>
 
-                    <form onSubmit="return confirm('Do you want to delete?')"
+                    <form onsubmit="return confirm('Do you want to delete?')"
                         wire:submit.prevent="leadDelete({{$lead->id }})">
-                        <button type="submit">@include('components.icons.trast')</button>
+                        <button type="submit">@include('components.icons.trash')</button>
                     </form>
 
                 </div>

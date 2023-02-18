@@ -10,7 +10,7 @@ class UserIndex extends Component {
  use WithPagination;
 
  public function render() {
-  $users = User::paginate( 10 );
+  $users = User::all();
   return view( 'livewire.user-index', ['users' => $users] );
  }
 }
