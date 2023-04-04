@@ -95,3 +95,76 @@ LMS Project- 01
 -------------------------------
 LMS Project- 02
 -------------------------------
+01. In User.php
+ public function invoices() {
+  return $this->hasMany( Invoice::class );
+ }
+
+02. In Lead.php
+ public function notes() {
+  return $this->hasMany( Note::class );
+ }
+
+03. In Invoice.php
+ public function items() {
+  return $this->hasMany( InvoiceItem::class );
+ }
+
+04. In Exam.php
+ public function homeworks() {
+  return $this->hasMany( HomeWork::class );
+ }
+
+04. In Grade.php
+ public function homeworks()
+ {
+  return $this->hasMany(HomeWork::class);
+ }
+
+ public function attendance()
+ {
+  return $this->hasMany(Attendance::class);
+ }
+
+ 05. In Course.php
+  public function grades()
+ {
+  return $this->hasMany(Grade::class);
+ }
+
+06. User HasRoles in User.php
+07. In DatabaseSeeder.php
+ $user = User::create( [
+   'name'     => 'Super Admin',
+   'email'    => 'super@sms.test',
+   'password' => bcrypt( 1234 ),
+  ] );
+
+  $role = Role::create( [
+   'name' => 'Super Admin',
+  ] );
+
+  $permission = Permission::create( [
+   'name' => 'create-admin',
+  ] );
+
+  $role->givePermissionTo( $permission );
+  $permission->assignRole( $role );
+
+  $user->assignRole( $role );
+ }
+
+08. প্রত্যেকটা operation হচ্ছে  permission. operation গুলোর সমষ্টি হচ্ছে একটা role. একটা role কে একটা user এর সাথে assign
+
+
+<!-- 05. Exam.php...................
+  public function homeworks()
+ {
+  return $this->hasMany(HomeWork::class);
+ }
+
+ public function up() {
+  Schema::create( 'exams', function ( Blueprint $table ) {
+   $table->foreignId( 'course_id' )->constrained()->cascadeOnDelete(); // রাসেল ভাই, এখানে grade_id use করেছেন
+  } );
+ } -->
