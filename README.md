@@ -153,8 +153,19 @@ LMS Project- 02
 
   $user->assignRole( $role );
  }
-
 08. প্রত্যেকটা operation হচ্ছে  permission. operation গুলোর সমষ্টি হচ্ছে একটা role. একটা role কে একটা user এর সাথে assign
+
+-------------------------------
+LMS Project- 03
+-------------------------------
+- Liveware Installation
+
+
+-------------------------------
+LMS Project- 04
+-------------------------------
+-   php artisan make:factory LeadFactory --model=Lead
+
 
 
 <!-- 05. Exam.php...................

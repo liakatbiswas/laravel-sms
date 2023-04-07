@@ -13,7 +13,7 @@ return new class extends Migration {
  public function up() {
   Schema::create( 'grades', function ( Blueprint $table ) {
    $table->id();
-   $table->unsignedBigInteger( 'number' );
+   $table->string( 'name' );
    $table->foreignId( 'course_id' )->constrained()->cascadeOnDelete();
    $table->timestamps();
   } );
