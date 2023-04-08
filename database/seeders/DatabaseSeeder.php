@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder {
    Permission::create( ['name' => $permission] );
   }
 
-  $this->create_user_with_role( 'Super Admin', 'Super Admin', 'super@bdcodex.com' );
-  $this->create_user_with_role( 'Communication', 'Communication Team', 'communication@bdcodex.com' );
-  $teacher = $this->create_user_with_role( 'Teacher', 'Teacher', 'teacher@bdcodex.com' );
-  $this->create_user_with_role( 'Leads', 'Leads', 'leads@bdcodex.com' );
+  $this->create_user_with_role( 'Super Admin', 'Super Admin', 'super@sms.test', '1234' );
+  $this->create_user_with_role( 'Communication', 'Communication Team', 'communication@sms.test', '1234' );
+  $teacher = $this->create_user_with_role( 'Teacher', 'Teacher', 'teacher@sms.test', '1234' );
+  $this->create_user_with_role( 'Leads', 'Leads', 'leads@sms.test', '1234' );
 
 //   Creating Lead
   Lead::factory( 100 )->create();
@@ -44,9 +44,9 @@ class DatabaseSeeder extends Seeder {
   Grade::factory( 10 )->create();
 
  }
- private function create_user_with_role( $type, $name, $email ) {
+ private function create_user_with_role( $type, $name, $email, $password ) {
   $role = Role::create( ['name' => $type] );
-  $user = User::create( ['name' => $name, 'email' => $email, 'password' => bcrypt( 1234 )] );
+  $user = User::create( ['name' => $name, 'email' => $email, 'password' => bcrypt( $password )] );
 
   /** if the user is a Super Admin then give the permission */
   if ( $type == 'Super Admin' ) {
