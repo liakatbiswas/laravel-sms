@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class LeadController extends Controller {
@@ -13,6 +14,14 @@ class LeadController extends Controller {
   */
  use WithPagination;
  public function index() {
+  $user = Auth::user();
+
+  $check = $user->hasPermissionTo( 'lead-management' );
+  if ( !$check ) {
+   flash()->addWarning( "You have no permission" );
+   return redirect()->route( 'dashboard' );
+  }
+
   return view( 'lead.index' );
  }
 

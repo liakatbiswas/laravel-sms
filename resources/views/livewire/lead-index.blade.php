@@ -33,7 +33,7 @@
 
     </table>
 
-    <div>
+    <div class="mt-5">
         {{ $leads->links() }}
     </div>
 </div>
